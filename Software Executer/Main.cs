@@ -105,7 +105,7 @@ namespace Software_Executer
         private void BTN_deleteScheme_Click(object sender, EventArgs e)
         {
             SQLCommand("DELETE FROM schemes WHERE id LIKE '" + ((Scheme)LB_Schemes.SelectedItem).Id + "';", null);
-            //SQLCommand("DELETE FROM softwares WHERE scheme_id LIKE '" + ((Scheme)LB_Schemes.SelectedItem).Id + "';", null);
+            SQLCommand("DELETE FROM softwares WHERE scheme_id LIKE '" + ((Scheme)LB_Schemes.SelectedItem).Id + "';", null);
             LB_Schemes.Items.RemoveAt(LB_Schemes.SelectedIndex);
         }
 
@@ -131,15 +131,8 @@ namespace Software_Executer
         {
             NewSoftware newSoftware = new NewSoftware();
             newSoftware.FormClosed += new FormClosedEventHandler(newSoftware_FormClosed);
-            foreach (var scheme in LB_Schemes.Items)
-            {
-                newSoftware.schemes.Add((Scheme)scheme);
-            }
-            foreach (var software in LB_Softwares.Items)
-            {
-                newSoftware.softwares.Add((Software)software);
-            }
             newSoftware.scheme = (Scheme)LB_Schemes.SelectedItem;
+            newSoftware.softwares = new List<Software>(){new Software(0, 0, "valami", "path", "path")};
             newSoftware.Show();
         }
 

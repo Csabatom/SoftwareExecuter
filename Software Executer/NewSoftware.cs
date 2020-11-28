@@ -28,7 +28,7 @@ namespace Software_Executer
                 }
             } else
             {
-                CB_softwares.Enabled = false;
+                CB_softwares.Enabled = true;
                 CB_softwares.Items.Add("Hozz létre programot!");
             }
         }
