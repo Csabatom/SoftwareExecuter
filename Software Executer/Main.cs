@@ -89,8 +89,6 @@ namespace Software_Executer
         {
             LB_Softwares.Items.Clear();
             BTN_deleteSoftware.Enabled = false;
-            SQLCommand("SELECT * FROM softwares WHERE scheme_id LIKE '"+LB_Schemes.SelectedIndex+"';", LB_Softwares);
-
             if (LB_Schemes.SelectedIndex == -1)
             {
                 BTN_newSoftware.Enabled = false;
@@ -100,13 +98,14 @@ namespace Software_Executer
             {
                 BTN_newSoftware.Enabled = true;
                 BTN_deleteScheme.Enabled = true;
+                SQLCommand("SELECT * FROM softwares WHERE scheme_id LIKE '" + ((Scheme)LB_Schemes.SelectedItem).Id + "';", LB_Softwares);
             }
         }
 
         private void BTN_deleteScheme_Click(object sender, EventArgs e)
         {
             SQLCommand("DELETE FROM schemes WHERE id LIKE '" + ((Scheme)LB_Schemes.SelectedItem).Id + "';", null);
-            SQLCommand("DELETE FROM softwares WHERE scheme_id LIKE '" + ((Scheme)LB_Schemes.SelectedItem).Id + "';", null);
+            //SQLCommand("DELETE FROM softwares WHERE scheme_id LIKE '" + ((Scheme)LB_Schemes.SelectedItem).Id + "';", null);
             LB_Schemes.Items.RemoveAt(LB_Schemes.SelectedIndex);
         }
 
@@ -140,6 +139,7 @@ namespace Software_Executer
             {
                 newSoftware.softwares.Add((Software)software);
             }
+            newSoftware.scheme = (Scheme)LB_Schemes.SelectedItem;
             newSoftware.Show();
         }
 
