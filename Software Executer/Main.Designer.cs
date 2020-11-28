@@ -40,12 +40,16 @@ namespace Software_Executer
             this.BTN_stopScheme = new System.Windows.Forms.Button();
             this.BTN_startScheme = new System.Windows.Forms.Button();
             this.BTN_settings = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.groupBox1.Controls.Add(this.button1);
             this.groupBox1.Controls.Add(this.BTN_newScheme);
             this.groupBox1.Controls.Add(this.LB_Schemes);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
@@ -59,10 +63,11 @@ namespace Software_Executer
             // 
             this.BTN_newScheme.Location = new System.Drawing.Point(6, 271);
             this.BTN_newScheme.Name = "BTN_newScheme";
-            this.BTN_newScheme.Size = new System.Drawing.Size(149, 50);
+            this.BTN_newScheme.Size = new System.Drawing.Size(93, 50);
             this.BTN_newScheme.TabIndex = 5;
             this.BTN_newScheme.Text = "Új séma";
             this.BTN_newScheme.UseVisualStyleBackColor = true;
+            this.BTN_newScheme.Click += new System.EventHandler(this.BTN_newScheme_Click);
             // 
             // LB_Schemes
             // 
@@ -72,9 +77,11 @@ namespace Software_Executer
             this.LB_Schemes.Name = "LB_Schemes";
             this.LB_Schemes.Size = new System.Drawing.Size(149, 244);
             this.LB_Schemes.TabIndex = 0;
+            this.LB_Schemes.SelectedIndexChanged += new System.EventHandler(this.LB_Schemes_SelectedIndexChanged);
             // 
             // groupBox2
             // 
+            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.groupBox2.Controls.Add(this.BTN_newSoftware);
             this.groupBox2.Controls.Add(this.BTN_deleteSoftware);
             this.groupBox2.Controls.Add(this.LB_Programs);
@@ -96,7 +103,7 @@ namespace Software_Executer
             // 
             // BTN_deleteSoftware
             // 
-            this.BTN_deleteSoftware.Location = new System.Drawing.Point(140, 272);
+            this.BTN_deleteSoftware.Location = new System.Drawing.Point(140, 271);
             this.BTN_deleteSoftware.Name = "BTN_deleteSoftware";
             this.BTN_deleteSoftware.Size = new System.Drawing.Size(125, 50);
             this.BTN_deleteSoftware.TabIndex = 3;
@@ -114,6 +121,9 @@ namespace Software_Executer
             // 
             // BTN_stopScheme
             // 
+            this.BTN_stopScheme.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.BTN_stopScheme.Enabled = false;
             this.BTN_stopScheme.Location = new System.Drawing.Point(462, 54);
             this.BTN_stopScheme.Name = "BTN_stopScheme";
             this.BTN_stopScheme.Size = new System.Drawing.Size(90, 140);
@@ -123,6 +133,8 @@ namespace Software_Executer
             // 
             // BTN_startScheme
             // 
+            this.BTN_startScheme.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.BTN_startScheme.Location = new System.Drawing.Point(462, 200);
             this.BTN_startScheme.Name = "BTN_startScheme";
             this.BTN_startScheme.Size = new System.Drawing.Size(90, 140);
@@ -132,6 +144,7 @@ namespace Software_Executer
             // 
             // BTN_settings
             // 
+            this.BTN_settings.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.BTN_settings.Location = new System.Drawing.Point(462, 12);
             this.BTN_settings.Name = "BTN_settings";
             this.BTN_settings.Size = new System.Drawing.Size(90, 36);
@@ -139,16 +152,26 @@ namespace Software_Executer
             this.BTN_settings.Text = "Beállítások";
             this.BTN_settings.UseVisualStyleBackColor = true;
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(105, 271);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(50, 50);
+            this.button1.TabIndex = 6;
+            this.button1.Text = "🗑";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
             // Main
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(558, 352);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+            this.ClientSize = new System.Drawing.Size(565, 352);
             this.Controls.Add(this.BTN_settings);
             this.Controls.Add(this.BTN_startScheme);
             this.Controls.Add(this.BTN_stopScheme);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Main";
             this.Text = "Software Executer";
@@ -170,6 +193,7 @@ namespace Software_Executer
         private System.Windows.Forms.Button BTN_stopScheme;
         private System.Windows.Forms.Button BTN_startScheme;
         private System.Windows.Forms.Button BTN_settings;
+        private System.Windows.Forms.Button button1;
     }
 }
 
