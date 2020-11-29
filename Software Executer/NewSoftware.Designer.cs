@@ -30,10 +30,7 @@ namespace Software_Executer
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(NewSoftware));
-            this.CB_softwares = new System.Windows.Forms.ComboBox();
-            this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.SelectSoftware = new System.Windows.Forms.TabPage();
-            this.BTN_selectSoftware = new System.Windows.Forms.Button();
+            this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.MakeNewSoftware = new System.Windows.Forms.TabPage();
             this.TXTBOX_executePath = new System.Windows.Forms.TextBox();
             this.BTN_executePathExplorer = new System.Windows.Forms.Button();
@@ -41,59 +38,16 @@ namespace Software_Executer
             this.TXTBOX_openPath = new System.Windows.Forms.TextBox();
             this.BTN_newSoftware = new System.Windows.Forms.Button();
             this.BTN_openPathExplorer = new System.Windows.Forms.Button();
-            this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
-            this.tabControl1.SuspendLayout();
-            this.SelectSoftware.SuspendLayout();
+            this.SelectSoftware = new System.Windows.Forms.TabPage();
+            this.BTN_selectSoftware = new System.Windows.Forms.Button();
+            this.CB_softwares = new System.Windows.Forms.ComboBox();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.TXTBOX_selectOpenPath = new System.Windows.Forms.TextBox();
+            this.BTN_selectOpenPathExplorer = new System.Windows.Forms.Button();
             this.MakeNewSoftware.SuspendLayout();
+            this.SelectSoftware.SuspendLayout();
+            this.tabControl1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // CB_softwares
-            // 
-            this.CB_softwares.FormattingEnabled = true;
-            this.CB_softwares.Location = new System.Drawing.Point(13, 10);
-            this.CB_softwares.Name = "CB_softwares";
-            this.CB_softwares.Size = new System.Drawing.Size(296, 26);
-            this.CB_softwares.TabIndex = 10;
-            this.CB_softwares.SelectedIndexChanged += new System.EventHandler(this.CB_softwares_SelectedIndexChanged);
-            // 
-            // tabControl1
-            // 
-            this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tabControl1.Controls.Add(this.SelectSoftware);
-            this.tabControl1.Controls.Add(this.MakeNewSoftware);
-            this.tabControl1.Location = new System.Drawing.Point(11, 12);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(331, 216);
-            this.tabControl1.TabIndex = 11;
-            // 
-            // SelectSoftware
-            // 
-            this.SelectSoftware.Controls.Add(this.BTN_selectSoftware);
-            this.SelectSoftware.Controls.Add(this.CB_softwares);
-            this.SelectSoftware.Font = new System.Drawing.Font("Montserrat", 8F);
-            this.SelectSoftware.Location = new System.Drawing.Point(4, 25);
-            this.SelectSoftware.Name = "SelectSoftware";
-            this.SelectSoftware.Padding = new System.Windows.Forms.Padding(3);
-            this.SelectSoftware.Size = new System.Drawing.Size(323, 187);
-            this.SelectSoftware.TabIndex = 0;
-            this.SelectSoftware.Text = "Szoftver kiválasztása";
-            this.SelectSoftware.UseVisualStyleBackColor = true;
-            // 
-            // BTN_selectSoftware
-            // 
-            this.BTN_selectSoftware.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.BTN_selectSoftware.Enabled = false;
-            this.BTN_selectSoftware.Location = new System.Drawing.Point(13, 140);
-            this.BTN_selectSoftware.Name = "BTN_selectSoftware";
-            this.BTN_selectSoftware.Size = new System.Drawing.Size(296, 40);
-            this.BTN_selectSoftware.TabIndex = 16;
-            this.BTN_selectSoftware.Text = "Szoftver kiválasztása";
-            this.BTN_selectSoftware.UseVisualStyleBackColor = true;
-            this.BTN_selectSoftware.Click += new System.EventHandler(this.BTN_selectSoftware_Click);
             // 
             // MakeNewSoftware
             // 
@@ -171,7 +125,7 @@ namespace Software_Executer
             this.BTN_newSoftware.Name = "BTN_newSoftware";
             this.BTN_newSoftware.Size = new System.Drawing.Size(296, 40);
             this.BTN_newSoftware.TabIndex = 15;
-            this.BTN_newSoftware.Text = "Szoftver létrehozása";
+            this.BTN_newSoftware.Text = "Létrehozás";
             this.BTN_newSoftware.UseVisualStyleBackColor = true;
             this.BTN_newSoftware.Click += new System.EventHandler(this.BTN_newSoftware_Click);
             // 
@@ -186,6 +140,79 @@ namespace Software_Executer
             this.BTN_openPathExplorer.UseVisualStyleBackColor = true;
             this.BTN_openPathExplorer.Click += new System.EventHandler(this.BTN_openPathFile_Click);
             // 
+            // SelectSoftware
+            // 
+            this.SelectSoftware.Controls.Add(this.TXTBOX_selectOpenPath);
+            this.SelectSoftware.Controls.Add(this.BTN_selectOpenPathExplorer);
+            this.SelectSoftware.Controls.Add(this.BTN_selectSoftware);
+            this.SelectSoftware.Controls.Add(this.CB_softwares);
+            this.SelectSoftware.Font = new System.Drawing.Font("Montserrat", 8F);
+            this.SelectSoftware.Location = new System.Drawing.Point(4, 25);
+            this.SelectSoftware.Name = "SelectSoftware";
+            this.SelectSoftware.Padding = new System.Windows.Forms.Padding(3);
+            this.SelectSoftware.Size = new System.Drawing.Size(323, 187);
+            this.SelectSoftware.TabIndex = 0;
+            this.SelectSoftware.Text = "Szoftver kiválasztása";
+            this.SelectSoftware.UseVisualStyleBackColor = true;
+            // 
+            // BTN_selectSoftware
+            // 
+            this.BTN_selectSoftware.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.BTN_selectSoftware.Enabled = false;
+            this.BTN_selectSoftware.Location = new System.Drawing.Point(13, 140);
+            this.BTN_selectSoftware.Name = "BTN_selectSoftware";
+            this.BTN_selectSoftware.Size = new System.Drawing.Size(296, 40);
+            this.BTN_selectSoftware.TabIndex = 16;
+            this.BTN_selectSoftware.Text = "Hozzáadás";
+            this.BTN_selectSoftware.UseVisualStyleBackColor = true;
+            this.BTN_selectSoftware.Click += new System.EventHandler(this.BTN_selectSoftware_Click);
+            // 
+            // CB_softwares
+            // 
+            this.CB_softwares.FormattingEnabled = true;
+            this.CB_softwares.Location = new System.Drawing.Point(13, 10);
+            this.CB_softwares.Name = "CB_softwares";
+            this.CB_softwares.Size = new System.Drawing.Size(296, 26);
+            this.CB_softwares.TabIndex = 10;
+            this.CB_softwares.SelectedIndexChanged += new System.EventHandler(this.CB_softwares_SelectedIndexChanged);
+            // 
+            // tabControl1
+            // 
+            this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tabControl1.Controls.Add(this.SelectSoftware);
+            this.tabControl1.Controls.Add(this.MakeNewSoftware);
+            this.tabControl1.Location = new System.Drawing.Point(11, 12);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(331, 216);
+            this.tabControl1.TabIndex = 11;
+            // 
+            // TXTBOX_selectOpenPath
+            // 
+            this.TXTBOX_selectOpenPath.ForeColor = System.Drawing.Color.Silver;
+            this.TXTBOX_selectOpenPath.Location = new System.Drawing.Point(13, 42);
+            this.TXTBOX_selectOpenPath.Name = "TXTBOX_selectOpenPath";
+            this.TXTBOX_selectOpenPath.Size = new System.Drawing.Size(251, 24);
+            this.TXTBOX_selectOpenPath.TabIndex = 17;
+            this.TXTBOX_selectOpenPath.Text = "Betöltendő mappa, fájl vagy URL";
+            this.TXTBOX_selectOpenPath.TextChanged += new System.EventHandler(this.TXTBOX_selectOpenPath_TextChanged);
+            this.TXTBOX_selectOpenPath.Enter += new System.EventHandler(this.TXTBOX_selectOpenPath_FocusEnter);
+            this.TXTBOX_selectOpenPath.Leave += new System.EventHandler(this.TXTBOX_selectOpenPath_FocusLeave);
+            // 
+            // BTN_selectOpenPathExplorer
+            // 
+            this.BTN_selectOpenPathExplorer.Font = new System.Drawing.Font("Montserrat", 10F);
+            this.BTN_selectOpenPathExplorer.Location = new System.Drawing.Point(269, 42);
+            this.BTN_selectOpenPathExplorer.Name = "BTN_selectOpenPathExplorer";
+            this.BTN_selectOpenPathExplorer.Size = new System.Drawing.Size(40, 24);
+            this.BTN_selectOpenPathExplorer.TabIndex = 18;
+            this.BTN_selectOpenPathExplorer.Text = "°°°";
+            this.BTN_selectOpenPathExplorer.UseVisualStyleBackColor = true;
+            this.BTN_selectOpenPathExplorer.Click += new System.EventHandler(this.BTN_selectOpenPathExplorer_Click);
+            // 
             // NewSoftware
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -197,26 +224,29 @@ namespace Software_Executer
             this.Name = "NewSoftware";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Új Program Létrehozása";
-            this.tabControl1.ResumeLayout(false);
-            this.SelectSoftware.ResumeLayout(false);
             this.MakeNewSoftware.ResumeLayout(false);
             this.MakeNewSoftware.PerformLayout();
+            this.SelectSoftware.ResumeLayout(false);
+            this.SelectSoftware.PerformLayout();
+            this.tabControl1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
-        private System.Windows.Forms.ComboBox CB_softwares;
-        private System.Windows.Forms.TabControl tabControl1;
-        private System.Windows.Forms.TabPage SelectSoftware;
+        private System.Windows.Forms.OpenFileDialog openFileDialog;
         private System.Windows.Forms.TabPage MakeNewSoftware;
+        private System.Windows.Forms.TextBox TXTBOX_executePath;
+        private System.Windows.Forms.Button BTN_executePathExplorer;
         private System.Windows.Forms.TextBox TXTBOX_softwareName;
         private System.Windows.Forms.TextBox TXTBOX_openPath;
         private System.Windows.Forms.Button BTN_newSoftware;
         private System.Windows.Forms.Button BTN_openPathExplorer;
+        private System.Windows.Forms.TabPage SelectSoftware;
         private System.Windows.Forms.Button BTN_selectSoftware;
-        private System.Windows.Forms.OpenFileDialog openFileDialog;
-        private System.Windows.Forms.TextBox TXTBOX_executePath;
-        private System.Windows.Forms.Button BTN_executePathExplorer;
+        private System.Windows.Forms.ComboBox CB_softwares;
+        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TextBox TXTBOX_selectOpenPath;
+        private System.Windows.Forms.Button BTN_selectOpenPathExplorer;
     }
 }

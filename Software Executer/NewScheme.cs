@@ -24,16 +24,23 @@ namespace Software_Executer
         {
             if (TXTBOX_schemeName.Text != "" && TXTBOX_schemeName.ForeColor != Color.Silver)
             {
-                foreach(var scheme in schemes)
+                if(schemes.Count != 0)
                 {
-                    if(scheme.Name != TXTBOX_schemeName.Text)
+                    foreach (var scheme in schemes)
                     {
-                        BTN_newScheme.Enabled = true;
-                    } else
-                    {
-                        BTN_newScheme.Enabled = false;
-                        break;
+                        if (scheme.Name != TXTBOX_schemeName.Text)
+                        {
+                            BTN_newScheme.Enabled = true;
+                        }
+                        else
+                        {
+                            BTN_newScheme.Enabled = false;
+                            break;
+                        }
                     }
+                } else
+                {
+                    BTN_newScheme.Enabled = true;
                 }
             } else
             {

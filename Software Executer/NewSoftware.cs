@@ -13,38 +13,19 @@ namespace Software_Executer
 {
     public partial class NewSoftware : Form
     {
-        public List<Scheme> schemes = new List<Scheme>();
         public List<Software> softwares = new List<Software>();
         public Scheme scheme;
 
         public NewSoftware()
         {
             InitializeComponent();
-            if(softwares.Count != 0)
-            {
-                foreach (var software in softwares)
-                {
-                    CB_softwares.Items.Add(software);
-                }
-            } else
-            {
-                CB_softwares.Enabled = true;
-                CB_softwares.Items.Add("Hozz létre programot!");
-            }
         }
 
-        private void CB_softwares_SelectedIndexChanged(object sender, EventArgs e)
+        public void fillComboBox()
         {
-
-        }
-
-        private void BTN_selectSoftware_Click(object sender, EventArgs e)
-        {
-            if(CB_softwares.SelectedIndex != -1)
+            foreach (var software in softwares)
             {
-                Main main = new Main();
-                //main.SQLCommand("INSERT INTO schemes (name) VALUES ('" + TXTBOX_softwareName.Text + "')", null);
-                this.Close();
+                CB_softwares.Items.Add(software);
             }
         }
 
@@ -58,6 +39,7 @@ namespace Software_Executer
                 TXTBOX_executePath.Text = openFileDialog.FileName;
                 TXTBOX_executePath.ForeColor = Color.Black;
             }
+            checkForm();
         }
 
         private void BTN_openPathFile_Click(object sender, EventArgs e)
@@ -70,6 +52,7 @@ namespace Software_Executer
                 TXTBOX_openPath.Text = openFileDialog.FileName;
                 TXTBOX_openPath.ForeColor = Color.Black;
             }
+            checkForm();
         }
 
         private void TXTBOX_softwareName_FocusEnter(object sender, EventArgs e)
@@ -79,6 +62,7 @@ namespace Software_Executer
                 TXTBOX_softwareName.Text = "";
                 TXTBOX_softwareName.ForeColor = Color.Black;
             }
+            checkForm();
         }
 
         private void TXTBOX_softwareName_FocusLeave(object sender, EventArgs e)
@@ -88,6 +72,7 @@ namespace Software_Executer
                 TXTBOX_softwareName.ForeColor = Color.Silver;
                 TXTBOX_softwareName.Text = "Szoftver neve";
             }
+            checkForm();
         }
 
         private void TXTBOX_executePath_FocusEnter(object sender, EventArgs e)
@@ -97,6 +82,7 @@ namespace Software_Executer
                 TXTBOX_executePath.Text = "";
                 TXTBOX_executePath.ForeColor = Color.Black;
             }
+            checkForm();
         }
 
         private void TXTBOX_executePath_FocusLeave(object sender, EventArgs e)
@@ -106,6 +92,7 @@ namespace Software_Executer
                 TXTBOX_executePath.ForeColor = Color.Silver;
                 TXTBOX_executePath.Text = "Alkalmazás (.exe) fájlt elérési útja";
             }
+            checkForm();
         }
 
         private void TXTBOX_openPath_FocusEnter(object sender, EventArgs e)
@@ -115,6 +102,7 @@ namespace Software_Executer
                 TXTBOX_openPath.Text = "";
                 TXTBOX_openPath.ForeColor = Color.Black;
             }
+            checkForm();
         }
 
         private void TXTBOX_openPath_FocusLeave(object sender, EventArgs e)
@@ -124,14 +112,33 @@ namespace Software_Executer
                 TXTBOX_openPath.ForeColor = Color.Silver;
                 TXTBOX_openPath.Text = "Betöltendő mappa, fájl vagy URL";
             }
+            checkForm();
         }
 
         void checkForm()
         {
-            if ((TXTBOX_softwareName.ForeColor == Color.Black && TXTBOX_softwareName.Text != "") && (TXTBOX_executePath.ForeColor == Color.Black && TXTBOX_executePath.Text != "") && (TXTBOX_openPath.ForeColor == Color.Black && TXTBOX_openPath.Text != ""))
+            if (TXTBOX_softwareName.Text != "" && TXTBOX_softwareName.ForeColor != Color.Silver && TXTBOX_executePath.Text != "" && TXTBOX_executePath.ForeColor != Color.Silver)
             {
-                BTN_newSoftware.Enabled = true;
-            } else
+                if(softwares.Count != 0)
+                {
+                    foreach (var software in softwares)
+                    {
+                        if (software.Name != TXTBOX_softwareName.Text)
+                        {
+                            BTN_newSoftware.Enabled = true;
+                        }
+                        else
+                        {
+                            BTN_newSoftware.Enabled = false;
+                            break;
+                        }
+                    }
+                } else
+                {
+                    BTN_newSoftware.Enabled = true;
+                }
+            }
+            else
             {
                 BTN_newSoftware.Enabled = false;
             }
@@ -164,6 +171,79 @@ namespace Software_Executer
                 main.SQLCommand("INSERT INTO softwares (scheme_id, name, path) VALUES ('" + scheme.Id + "', '" + TXTBOX_softwareName.Text + "', '" + TXTBOX_executePath.Text + "')", null);
             }
             this.Close();
+        }
+
+        private void CB_softwares_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            checkSelectionForm();
+        }
+
+        private void BTN_selectSoftware_Click(object sender, EventArgs e)
+        {
+            Main main = new Main();
+            Software selectedSoftware = (Software)CB_softwares.SelectedItem;
+            if (TXTBOX_selectOpenPath.ForeColor != Color.Silver)
+            {
+                // MEGNYITUNK EGY FÁJLT
+                main.SQLCommand("INSERT INTO softwares (scheme_id, name, path, openPath) VALUES ('" + scheme.Id + "', '" + selectedSoftware.Name + "', '" + selectedSoftware.Path + "', '" + TXTBOX_selectOpenPath.Text + "')", null);
+            }
+            else
+            {
+                main.SQLCommand("INSERT INTO softwares (scheme_id, name, path) VALUES ('" + scheme.Id + "', '" + selectedSoftware.Name + "', '" + selectedSoftware.Path + "')", null);
+            }
+            this.Close();
+        }
+
+        public void setSoftwares(List<Software> inputSoftwares)
+        {
+            softwares = inputSoftwares;
+            fillComboBox();
+        }
+
+        private void TXTBOX_selectOpenPath_FocusEnter(object sender, EventArgs e)
+        {
+            if (TXTBOX_selectOpenPath.Text == "Betöltendő mappa, fájl vagy URL" && TXTBOX_selectOpenPath.ForeColor == Color.Silver)
+            {
+                TXTBOX_selectOpenPath.Text = "";
+                TXTBOX_selectOpenPath.ForeColor = Color.Black;
+            }
+        }
+
+        private void TXTBOX_selectOpenPath_FocusLeave(object sender, EventArgs e)
+        {
+            if (TXTBOX_selectOpenPath.Text == "")
+            {
+                TXTBOX_selectOpenPath.ForeColor = Color.Silver;
+                TXTBOX_selectOpenPath.Text = "Betöltendő mappa, fájl vagy URL";
+            }
+        }
+
+        private void TXTBOX_selectOpenPath_TextChanged(object sender, EventArgs e)
+        {
+            checkSelectionForm();
+        }
+
+        private void BTN_selectOpenPathExplorer_Click(object sender, EventArgs e)
+        {
+            openFileDialog.Filter = "";
+            var result = openFileDialog.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                TXTBOX_selectOpenPath.Text = openFileDialog.FileName;
+                TXTBOX_selectOpenPath.ForeColor = Color.Black;
+            }
+            checkSelectionForm();
+        }
+
+        void checkSelectionForm()
+        {
+            if(CB_softwares.SelectedIndex != -1)
+            {
+                BTN_selectSoftware.Enabled = true;
+            } else
+            {
+                BTN_selectSoftware.Enabled = false;
+            }
         }
     }
 }

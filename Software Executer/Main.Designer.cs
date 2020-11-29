@@ -38,7 +38,6 @@ namespace Software_Executer
             this.BTN_newSoftware = new System.Windows.Forms.Button();
             this.BTN_deleteSoftware = new System.Windows.Forms.Button();
             this.LB_Softwares = new System.Windows.Forms.ListBox();
-            this.BTN_stopScheme = new System.Windows.Forms.Button();
             this.BTN_startScheme = new System.Windows.Forms.Button();
             this.BTN_settings = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
@@ -62,6 +61,7 @@ namespace Software_Executer
             // 
             // BTN_deleteScheme
             // 
+            this.BTN_deleteScheme.Enabled = false;
             this.BTN_deleteScheme.Font = new System.Drawing.Font("Montserrat", 10F);
             this.BTN_deleteScheme.Location = new System.Drawing.Point(105, 271);
             this.BTN_deleteScheme.Name = "BTN_deleteScheme";
@@ -142,30 +142,19 @@ namespace Software_Executer
             this.LB_Softwares.TabIndex = 3;
             this.LB_Softwares.SelectedIndexChanged += new System.EventHandler(this.LB_Softwares_SelectedIndexChanged);
             // 
-            // BTN_stopScheme
-            // 
-            this.BTN_stopScheme.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.BTN_stopScheme.Enabled = false;
-            this.BTN_stopScheme.Font = new System.Drawing.Font("Montserrat", 8F);
-            this.BTN_stopScheme.Location = new System.Drawing.Point(462, 54);
-            this.BTN_stopScheme.Name = "BTN_stopScheme";
-            this.BTN_stopScheme.Size = new System.Drawing.Size(90, 140);
-            this.BTN_stopScheme.TabIndex = 7;
-            this.BTN_stopScheme.Text = "Séma leállítása";
-            this.BTN_stopScheme.UseVisualStyleBackColor = true;
-            // 
             // BTN_startScheme
             // 
             this.BTN_startScheme.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.BTN_startScheme.Enabled = false;
             this.BTN_startScheme.Font = new System.Drawing.Font("Montserrat", 8F);
-            this.BTN_startScheme.Location = new System.Drawing.Point(462, 200);
+            this.BTN_startScheme.Location = new System.Drawing.Point(462, 54);
             this.BTN_startScheme.Name = "BTN_startScheme";
-            this.BTN_startScheme.Size = new System.Drawing.Size(90, 140);
+            this.BTN_startScheme.Size = new System.Drawing.Size(90, 286);
             this.BTN_startScheme.TabIndex = 8;
             this.BTN_startScheme.Text = "Séma elindítása";
             this.BTN_startScheme.UseVisualStyleBackColor = true;
+            this.BTN_startScheme.Click += new System.EventHandler(this.BTN_startScheme_Click);
             // 
             // BTN_settings
             // 
@@ -185,7 +174,6 @@ namespace Software_Executer
             this.ClientSize = new System.Drawing.Size(565, 352);
             this.Controls.Add(this.BTN_settings);
             this.Controls.Add(this.BTN_startScheme);
-            this.Controls.Add(this.BTN_stopScheme);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
@@ -208,7 +196,6 @@ namespace Software_Executer
         private System.Windows.Forms.Button BTN_newSoftware;
         private System.Windows.Forms.Button BTN_deleteSoftware;
         private System.Windows.Forms.ListBox LB_Softwares;
-        private System.Windows.Forms.Button BTN_stopScheme;
         private System.Windows.Forms.Button BTN_startScheme;
         private System.Windows.Forms.Button BTN_settings;
         private System.Windows.Forms.Button BTN_deleteScheme;

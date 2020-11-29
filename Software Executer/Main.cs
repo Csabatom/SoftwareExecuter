@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Data.SQLite;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -57,8 +58,14 @@ namespace Software_Executer
 
         public void LoadData()
         {
+            int schemesSelectedIndex = -1;
+            if(LB_Schemes.SelectedIndex != -1)
+            {
+                schemesSelectedIndex = LB_Schemes.SelectedIndex;
+            }
             LB_Schemes.Items.Clear();
             SQLCommand("SELECT * FROM schemes;", LB_Schemes);
+            LB_Schemes.SelectedIndex = schemesSelectedIndex;
         }
 
         public void SQLCommand(String inputComm, ListBox insertList)
@@ -93,11 +100,13 @@ namespace Software_Executer
             {
                 BTN_newSoftware.Enabled = false;
                 BTN_deleteScheme.Enabled = false;
+                BTN_startScheme.Enabled = false;
             }
             else
             {
                 BTN_newSoftware.Enabled = true;
                 BTN_deleteScheme.Enabled = true;
+                BTN_startScheme.Enabled = true;
                 SQLCommand("SELECT * FROM softwares WHERE scheme_id LIKE '" + ((Scheme)LB_Schemes.SelectedItem).Id + "';", LB_Softwares);
             }
         }
@@ -132,13 +141,49 @@ namespace Software_Executer
             NewSoftware newSoftware = new NewSoftware();
             newSoftware.FormClosed += new FormClosedEventHandler(newSoftware_FormClosed);
             newSoftware.scheme = (Scheme)LB_Schemes.SelectedItem;
-            newSoftware.softwares = new List<Software>(){new Software(0, 0, "valami", "path", "path")};
+            newSoftware.setSoftwares(everySoftware());
             newSoftware.Show();
         }
 
         void newSoftware_FormClosed(object sender, FormClosedEventArgs e)
         {
             this.LoadData();
+        }
+
+        List<Software> everySoftware()
+        {
+            List<Software> softwares = new List<Software>();
+            SQLiteCommand command;
+            command = conn.CreateCommand();
+            command.CommandText = "SELECT id, name, path FROM softwares GROUP BY 'name';";
+            command.ExecuteNonQuery();
+
+            SQLiteDataReader reader;
+            reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                softwares.Add(new Software(int.Parse(reader["id"].ToString()), -1, reader["name"].ToString(), reader["path"].ToString(), null));
+            }
+            return softwares;
+        }
+
+        private void BTN_startScheme_Click(object sender, EventArgs e)
+        {
+            List<Software> softwares = new List<Software>();
+            foreach (var software in LB_Softwares.Items)
+            {
+                softwares.Add((Software)software);
+            }
+            foreach(var software in softwares)
+            {
+                try
+                {
+                    Process.Start(software.Path, software.OpenPath);
+                } catch (Exception)
+                {
+                    MessageBox.Show("Nem lehet elindítani a " + software + " nevű programot!\n Kalibrálja újra");
+                }
+            }
         }
     }
 }
