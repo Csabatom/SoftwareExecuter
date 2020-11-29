@@ -39,11 +39,11 @@ namespace Software_Executer
             this.BTN_newSoftware = new System.Windows.Forms.Button();
             this.BTN_openPathExplorer = new System.Windows.Forms.Button();
             this.SelectSoftware = new System.Windows.Forms.TabPage();
+            this.TXTBOX_selectOpenPath = new System.Windows.Forms.TextBox();
+            this.BTN_selectOpenPathExplorer = new System.Windows.Forms.Button();
             this.BTN_selectSoftware = new System.Windows.Forms.Button();
             this.CB_softwares = new System.Windows.Forms.ComboBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.TXTBOX_selectOpenPath = new System.Windows.Forms.TextBox();
-            this.BTN_selectOpenPathExplorer = new System.Windows.Forms.Button();
             this.MakeNewSoftware.SuspendLayout();
             this.SelectSoftware.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -155,41 +155,6 @@ namespace Software_Executer
             this.SelectSoftware.Text = "Szoftver kiválasztása";
             this.SelectSoftware.UseVisualStyleBackColor = true;
             // 
-            // BTN_selectSoftware
-            // 
-            this.BTN_selectSoftware.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.BTN_selectSoftware.Enabled = false;
-            this.BTN_selectSoftware.Location = new System.Drawing.Point(13, 140);
-            this.BTN_selectSoftware.Name = "BTN_selectSoftware";
-            this.BTN_selectSoftware.Size = new System.Drawing.Size(296, 40);
-            this.BTN_selectSoftware.TabIndex = 16;
-            this.BTN_selectSoftware.Text = "Hozzáadás";
-            this.BTN_selectSoftware.UseVisualStyleBackColor = true;
-            this.BTN_selectSoftware.Click += new System.EventHandler(this.BTN_selectSoftware_Click);
-            // 
-            // CB_softwares
-            // 
-            this.CB_softwares.FormattingEnabled = true;
-            this.CB_softwares.Location = new System.Drawing.Point(13, 10);
-            this.CB_softwares.Name = "CB_softwares";
-            this.CB_softwares.Size = new System.Drawing.Size(296, 26);
-            this.CB_softwares.TabIndex = 10;
-            this.CB_softwares.SelectedIndexChanged += new System.EventHandler(this.CB_softwares_SelectedIndexChanged);
-            // 
-            // tabControl1
-            // 
-            this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tabControl1.Controls.Add(this.SelectSoftware);
-            this.tabControl1.Controls.Add(this.MakeNewSoftware);
-            this.tabControl1.Location = new System.Drawing.Point(11, 12);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(331, 216);
-            this.tabControl1.TabIndex = 11;
-            // 
             // TXTBOX_selectOpenPath
             // 
             this.TXTBOX_selectOpenPath.ForeColor = System.Drawing.Color.Silver;
@@ -212,6 +177,46 @@ namespace Software_Executer
             this.BTN_selectOpenPathExplorer.Text = "°°°";
             this.BTN_selectOpenPathExplorer.UseVisualStyleBackColor = true;
             this.BTN_selectOpenPathExplorer.Click += new System.EventHandler(this.BTN_selectOpenPathExplorer_Click);
+            // 
+            // BTN_selectSoftware
+            // 
+            this.BTN_selectSoftware.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.BTN_selectSoftware.Enabled = false;
+            this.BTN_selectSoftware.Location = new System.Drawing.Point(13, 140);
+            this.BTN_selectSoftware.Name = "BTN_selectSoftware";
+            this.BTN_selectSoftware.Size = new System.Drawing.Size(296, 40);
+            this.BTN_selectSoftware.TabIndex = 16;
+            this.BTN_selectSoftware.Text = "Hozzáadás";
+            this.BTN_selectSoftware.UseVisualStyleBackColor = true;
+            this.BTN_selectSoftware.Click += new System.EventHandler(this.BTN_selectSoftware_Click);
+            // 
+            // CB_softwares
+            // 
+            this.CB_softwares.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.CB_softwares.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.CB_softwares.FormattingEnabled = true;
+            this.CB_softwares.Location = new System.Drawing.Point(13, 10);
+            this.CB_softwares.Name = "CB_softwares";
+            this.CB_softwares.Size = new System.Drawing.Size(296, 26);
+            this.CB_softwares.TabIndex = 10;
+            this.CB_softwares.SelectedIndexChanged += new System.EventHandler(this.CB_softwares_SelectedIndexChanged);
+            this.CB_softwares.TextUpdate += new System.EventHandler(this.CB_softwares_TextUpdate);
+            this.CB_softwares.Enter += new System.EventHandler(this.CB_softwares_FocusEnter);
+            this.CB_softwares.Leave += new System.EventHandler(this.CB_softwares_FocusLeave);
+            // 
+            // tabControl1
+            // 
+            this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tabControl1.Controls.Add(this.SelectSoftware);
+            this.tabControl1.Controls.Add(this.MakeNewSoftware);
+            this.tabControl1.Location = new System.Drawing.Point(11, 12);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(331, 216);
+            this.tabControl1.TabIndex = 11;
             // 
             // NewSoftware
             // 

@@ -23,6 +23,8 @@ namespace Software_Executer
 
         public void fillComboBox()
         {
+            CB_softwares.Text = "Válasszon egy programot!";
+            CB_softwares.ForeColor = Color.Silver;
             foreach (var software in softwares)
             {
                 CB_softwares.Items.Add(software);
@@ -243,6 +245,39 @@ namespace Software_Executer
             } else
             {
                 BTN_selectSoftware.Enabled = false;
+            }
+        }
+
+        private void CB_softwares_TextUpdate(object sender, EventArgs e)
+        {
+            foreach(var software in softwares)
+            {
+                if(CB_softwares.Text == software.Name)
+                {
+                    BTN_selectSoftware.Enabled = true;
+                    break;
+                } else
+                {
+                    BTN_selectSoftware.Enabled = false;
+                }
+            }
+        }
+
+        private void CB_softwares_FocusEnter(object sender, EventArgs e)
+        {
+            if(CB_softwares.ForeColor == Color.Silver)
+            {
+                CB_softwares.Text = "";
+                CB_softwares.ForeColor = Color.Black;
+            }
+        }
+
+        private void CB_softwares_FocusLeave(object sender, EventArgs e)
+        {
+            if(CB_softwares.Text == "" && CB_softwares.ForeColor == Color.Black)
+            {
+                CB_softwares.Text = "Válasszon egy programot!";
+                CB_softwares.ForeColor = Color.Silver;
             }
         }
     }
