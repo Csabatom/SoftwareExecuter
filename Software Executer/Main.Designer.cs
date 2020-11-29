@@ -166,6 +166,7 @@ namespace Software_Executer
             this.BTN_settings.TabIndex = 6;
             this.BTN_settings.Text = "Beállítások";
             this.BTN_settings.UseVisualStyleBackColor = true;
+            this.BTN_settings.Click += new System.EventHandler(this.BTN_settings_Click);
             // 
             // Main
             // 
@@ -197,8 +198,8 @@ namespace Software_Executer
         private System.Windows.Forms.Button BTN_deleteSoftware;
         private System.Windows.Forms.ListBox LB_Softwares;
         private System.Windows.Forms.Button BTN_startScheme;
-        private System.Windows.Forms.Button BTN_settings;
         private System.Windows.Forms.Button BTN_deleteScheme;
+        private System.Windows.Forms.Button BTN_settings;
     }
 }
 

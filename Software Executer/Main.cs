@@ -174,16 +174,24 @@ namespace Software_Executer
             {
                 softwares.Add((Software)software);
             }
-            foreach(var software in softwares)
+            this.WindowState = FormWindowState.Minimized;
+            foreach (var software in softwares)
             {
                 try
                 {
                     Process.Start(software.Path, software.OpenPath);
                 } catch (Exception)
                 {
-                    MessageBox.Show("Nem lehet elindítani a " + software + " nevű programot!\n Kalibrálja újra");
+                    MessageBox.Show("Nem lehet elindítani a " + software + " nevű programot!\nPróbálja meg újra hozzáadni!");
+                    this.WindowState = FormWindowState.Normal;
                 }
             }
+        }
+
+        private void BTN_settings_Click(object sender, EventArgs e)
+        {
+            Settings settings = new Settings();
+            settings.Show();
         }
     }
 }
