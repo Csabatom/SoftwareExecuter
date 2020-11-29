@@ -39,7 +39,6 @@ namespace Software_Executer
             this.BTN_deleteSoftware = new System.Windows.Forms.Button();
             this.LB_Softwares = new System.Windows.Forms.ListBox();
             this.BTN_startScheme = new System.Windows.Forms.Button();
-            this.BTN_settings = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -148,32 +147,19 @@ namespace Software_Executer
             | System.Windows.Forms.AnchorStyles.Right)));
             this.BTN_startScheme.Enabled = false;
             this.BTN_startScheme.Font = new System.Drawing.Font("Montserrat", 8F);
-            this.BTN_startScheme.Location = new System.Drawing.Point(462, 54);
+            this.BTN_startScheme.Location = new System.Drawing.Point(462, 12);
             this.BTN_startScheme.Name = "BTN_startScheme";
-            this.BTN_startScheme.Size = new System.Drawing.Size(90, 286);
+            this.BTN_startScheme.Size = new System.Drawing.Size(90, 328);
             this.BTN_startScheme.TabIndex = 8;
             this.BTN_startScheme.Text = "Séma elindítása";
             this.BTN_startScheme.UseVisualStyleBackColor = true;
             this.BTN_startScheme.Click += new System.EventHandler(this.BTN_startScheme_Click);
-            // 
-            // BTN_settings
-            // 
-            this.BTN_settings.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.BTN_settings.Font = new System.Drawing.Font("Montserrat", 7F);
-            this.BTN_settings.Location = new System.Drawing.Point(462, 12);
-            this.BTN_settings.Name = "BTN_settings";
-            this.BTN_settings.Size = new System.Drawing.Size(90, 36);
-            this.BTN_settings.TabIndex = 6;
-            this.BTN_settings.Text = "Beállítások";
-            this.BTN_settings.UseVisualStyleBackColor = true;
-            this.BTN_settings.Click += new System.EventHandler(this.BTN_settings_Click);
             // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.ClientSize = new System.Drawing.Size(565, 352);
-            this.Controls.Add(this.BTN_settings);
             this.Controls.Add(this.BTN_startScheme);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
@@ -199,7 +185,6 @@ namespace Software_Executer
         private System.Windows.Forms.ListBox LB_Softwares;
         private System.Windows.Forms.Button BTN_startScheme;
         private System.Windows.Forms.Button BTN_deleteScheme;
-        private System.Windows.Forms.Button BTN_settings;
     }
 }
 

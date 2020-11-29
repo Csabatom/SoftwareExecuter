@@ -106,8 +106,15 @@ namespace Software_Executer
             {
                 BTN_newSoftware.Enabled = true;
                 BTN_deleteScheme.Enabled = true;
-                BTN_startScheme.Enabled = true;
                 SQLCommand("SELECT * FROM softwares WHERE scheme_id LIKE '" + ((Scheme)LB_Schemes.SelectedItem).Id + "';", LB_Softwares);
+                if (LB_Softwares.Items.Count != 0)
+                {
+                    BTN_startScheme.Enabled = true;
+                }
+                else
+                {
+                    BTN_startScheme.Enabled = false;
+                }
             }
         }
 
@@ -155,7 +162,7 @@ namespace Software_Executer
             List<Software> softwares = new List<Software>();
             SQLiteCommand command;
             command = conn.CreateCommand();
-            command.CommandText = "SELECT id, name, path FROM softwares GROUP BY 'name';";
+            command.CommandText = "SELECT id, name, path FROM softwares GROUP BY name;";
             command.ExecuteNonQuery();
 
             SQLiteDataReader reader;
@@ -186,12 +193,6 @@ namespace Software_Executer
                     this.WindowState = FormWindowState.Normal;
                 }
             }
-        }
-
-        private void BTN_settings_Click(object sender, EventArgs e)
-        {
-            Settings settings = new Settings();
-            settings.Show();
         }
     }
 }
